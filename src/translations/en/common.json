@@ -1,0 +1,17 @@
+{
+  "validation": {
+    "required_email": "Email is required",
+    "invalid_email": "Invalid email address",
+    "required_password": "Password is required"
+  },
+  "login": {
+    "welcome_to": "Welcome to",
+    "tatva": "Tatva",
+    "dev": "DEV",
+    "Start your business easily": "Start your business easily",
+    "Or Easily Using": "Or Easily Using",
+    "Email": "Email",
+    "Password": "Password",
+    "Sign In": "Sign In"
+  }
+}
