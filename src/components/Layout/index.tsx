@@ -2,16 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { toggleSidebar } from "../../store/App/actions";
 import { RootState } from "../../store/rootReducer";
-import Layout from "../../components/Layout";
+import Topbar from "../../components/Topbar";
+import Sidebar from "../../components/Sidebar";
 
-const logo = require("../../assets/logo.svg");
-
-interface DispatchProps {
+interface LayoutProps {
+  children: React.ReactNode;
   toggleSidebar: () => void;
   showSidebar: boolean;
 }
 
-const Home = ({ toggleSidebar, showSidebar }: DispatchProps) => {
+const Layout = ({ children, toggleSidebar, showSidebar }: LayoutProps) => {
   const sidebar = { show: showSidebar, collapse: !showSidebar };
 
   const changeToDark = () => {
@@ -26,7 +26,20 @@ const Home = ({ toggleSidebar, showSidebar }: DispatchProps) => {
     toggleSidebar();
   };
 
-  return <Layout>{showSidebar ? <img src={logo} /> : null}</Layout>;
+  return (
+    <div className="theme-light">
+      <div className="wrapper">
+        <Topbar changeMobileSidebarVisibility={changeMobileSidebarVisibility} />
+        <Sidebar
+          sidebar={sidebar}
+          changeToDark={changeToDark}
+          changeToLight={changeToLight}
+          changeMobileSidebarVisibility={changeMobileSidebarVisibility}
+        />
+        {children}
+      </div>
+    </div>
+  );
 };
 
 const mapStateToProps = (state: RootState) => {
@@ -38,4 +51,4 @@ const mapStateToProps = (state: RootState) => {
 export default connect(
   mapStateToProps,
   { toggleSidebar }
-)(Home);
+)(Layout);

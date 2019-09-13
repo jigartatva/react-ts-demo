@@ -506,3 +506,20 @@
   }
 }
 
+.custom-dropdown{
+  select{
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 12px;
+    height: 32px;
+    transition: border 0.3s;
+    background: transparent;
+    border: 1px solid #f2f4f7;
+    color: #646777;
+    display: block;
+    &:focus{
+      outline: none;
+      border-color: #4ce1b6;
+    }
+  }
+}

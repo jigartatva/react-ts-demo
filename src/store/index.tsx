@@ -1,12 +1,13 @@
 import { createBrowserHistory } from 'history';
 import { applyMiddleware, compose, createStore } from 'redux';
+import reduxThunk, { ThunkMiddleware } from 'redux-thunk';
 import { routerMiddleware } from 'connected-react-router';
-import createRootReducer from './rootReducer';
+import {createRootReducer, RootState, RootActions} from './rootReducer';
 
 export const history = createBrowserHistory();
 
 const enhancers = [];
-const middleware = [routerMiddleware(history)];
+const middleware = [reduxThunk as ThunkMiddleware<RootState, RootActions>, routerMiddleware(history)];
 
 export default function configureStore(preloadedState?: any) {
   const composeEnhancer: typeof compose =

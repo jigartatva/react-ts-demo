@@ -1,0 +1,80 @@
+.custom-checkbox {
+    input[type="checkbox"] {
+        position: absolute;
+        left: -99999px;
+        visibility: hidden;
+        opacity: 0;
+        & + label {
+            display: block;
+            cursor: pointer;
+            padding-left: 30px;
+            position: relative;
+            margin: 5px 30px 5px 0;
+            user-select: none;
+            color: #646777;
+            &::before {
+                content: "";
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                border-radius: 4px;
+                border: 1px solid #dddddd;
+                left: 0;
+                top: 2px;
+                -webkit-transition: 0.3s all ease;
+                -moz-transition: 0.3s all ease;
+                transition: 0.3s all ease;
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                width: 11px;
+                height: 6px;
+                border-radius: 0;
+                border: 2px solid #4ce1b6;
+                border-top: 0;
+                border-right: 0;
+                -webkit-transform: rotate(-45deg);
+                -moz-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+                left: 4px;
+                top: 6px;
+                opacity: 0;
+                visibility: hidden;
+                -webkit-transition: 0.3s all ease;
+                -moz-transition: 0.3s all ease;
+                transition: 0.3s all ease;
+            }
+        }
+        &:checked {
+            & + label {
+                &::before {
+                    border-color: #4ce1b6;
+                }
+                &::after {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+        &:disabled {
+            & + label {
+                cursor: not-allowed;
+                pointer-events: none;
+                &::before {
+                    background: #f5f5f5;
+                }
+            }
+            &:checked {
+                & + label {
+                    &::before {
+                        border-color: #dddddd;
+                    }
+                    &::after {
+                        border-color: #dddddd;
+                    }
+                }
+            }
+        }
+    }
+}
