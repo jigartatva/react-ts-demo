@@ -4,19 +4,21 @@
       "id": 1,
       "first_name": "Sebastian",
       "last_name": "Eschweiler",
-      "dob": null,
+      "dob": "2019-09-11T18:30:00.000Z",
       "gender": "M",
       "address": "dfdf",
-      "bio": "dfdf"
+      "bio": "dfdf",
+      "email": "s@s.com"
     },
     {
       "id": 2,
       "first_name": "Steve",
       "last_name": "Palmer",
-      "dob": "",
+      "dob": "2019-09-24T11:13:57.951Z",
       "gender": "M",
-      "address": "",
-      "bio": ""
+      "address": "d",
+      "bio": "f",
+      "email": "f@ww.www"
     },
     {
       "id": 3,
@@ -27,86 +29,5 @@
       "address": "",
       "bio": ""
     },
-    {
-      "first_name": "G",
-      "last_name": "C",
-      "dob": "2019-09-23T07:08:51.941Z",
-      "gender": "M",
-      "address": "My address",
-      "bio": "My bio",
-      "id": 4
-    },
-    {
-      "first_name": "G",
-      "last_name": "C",
-      "dob": "2019-09-23T07:08:51.941Z",
-      "gender": "M",
-      "address": "My address",
-      "bio": "My bio",
-      "id": 5
-    },
-    {
-      "first_name": "H",
-      "last_name": "h",
-      "dob": "2019-09-28T07:12:00.523Z",
-      "gender": "M",
-      "address": "sd",
-      "bio": "sd",
-      "id": 6
-    },
-    {
-      "first_name": "sd",
-      "last_name": "sd",
-      "dob": "2019-09-24T07:19:07.046Z",
-      "gender": "F",
-      "address": "sdsd",
-      "bio": "sd",
-      "id": 7
-    },
-    {
-      "first_name": "sdsd",
-      "last_name": "sdsd",
-      "dob": "2019-09-24T07:34:46.488Z",
-      "gender": "F",
-      "address": "ds",
-      "bio": "ds",
-      "id": 8
-    },
-    {
-      "first_name": "dffffffffffffffffffffffffffffdfdfdfdfdfdfdfdfd",
-      "last_name": "dfdfdf",
-      "dob": "2019-09-20T07:41:13.876Z",
-      "gender": "F",
-      "address": "dffffffffffffffffff",
-      "bio": "dsssssssssssssss",
-      "id": 9
-    },
-    {
-      "first_name": "fggf",
-      "last_name": "fdgfdg",
-      "dob": "2019-09-22T18:30:00.000Z",
-      "gender": "M",
-      "address": "fdg",
-      "bio": "fg",
-      "id": 10
-    },
-    {
-      "first_name": "fdsfsd",
-      "last_name": "fsdfsdf",
-      "dob": "2019-09-24T18:30:00.000Z",
-      "gender": "M",
-      "address": "dfdfd",
-      "bio": "dfdfdf",
-      "id": 11
-    },
-    {
-      "first_name": "df",
-      "last_name": "dfdf",
-      "dob": "2019-09-25T18:30:00.000Z",
-      "gender": "M",
-      "address": "dfdfdf",
-      "bio": "dfdf",
-      "id": 12
-    }
   ]
 }

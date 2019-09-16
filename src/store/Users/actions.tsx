@@ -5,7 +5,7 @@ import { User } from '../../models/users';
 import { AxiosResponse } from 'axios';
 import { UsersActionTypes } from './types';
 import { fetchUsersService, fetchUserService, addUserService, editUserService, deleteUserService } from '../../services/users';
-import axios from '../../services/api';
+
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootActions>;
 // FETCH USERS
 
@@ -154,6 +154,10 @@ interface EditUserFail {
   type: UsersActionTypes.EDIT_USER_FAIL;
 }
 
+interface ResetEditData {
+  type: UsersActionTypes.RESET_EDIT_DATA;
+}
+
 export const editUser = (
   editedUser: User
 ): ThunkResult<void> => async dispatch => {
@@ -183,6 +187,9 @@ const handleEditUserFail = (dispatch: Dispatch<EditUserFail>) => {
   dispatch({ type: UsersActionTypes.EDIT_USER_FAIL });
 };
 
+export const resetEditData = (): ThunkResult<void> => dispatch => {
+  dispatch({ type: UsersActionTypes.RESET_EDIT_DATA });
+};
 // DELETE USER
 
 interface DeleteUser {
@@ -228,6 +235,7 @@ export type UsersAction =
   | EditUser
   | EditUserSuccess
   | EditUserFail
+  | ResetEditData
   | DeleteUser
   | DeleteUserSuccess
   | DeleteUserFail;

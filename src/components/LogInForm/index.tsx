@@ -1,12 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import { withFormik, FormikProps, FormikErrors, Form, Field } from "formik";
-import EyeIcon from "mdi-react/EyeIcon";
 import KeyVariantIcon from "mdi-react/KeyVariantIcon";
 import AccountOutlineIcon from "mdi-react/AccountOutlineIcon";
 import { useTranslation } from "react-i18next";
-
 // Shape of form values
 interface FormValues {
   email: string;
@@ -17,6 +13,7 @@ interface OtherProps {
   message: string;
 }
 
+// Aside: You may see InjectedFormikProps<OtherProps, FormValues> instead of what comes below in older code.. InjectedFormikProps was artifact of when Formik only exported a HoC. It is also less flexible as it MUST wrap all props (it passes them through).
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
   const { touched, errors, isSubmitting, message } = props;
   const { t } = useTranslation();
@@ -30,7 +27,9 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
           </div>
           <Field type="email" name="email" />
         </div>
-        {touched.email && errors.email && <div>{t(errors.email)}</div>}
+        {touched.email && errors.email && (
+          <div className="has-error">{t(errors.email)}</div>
+        )}
       </div>
       <div className="form__form-group">
         <span className="form__form-group-label">{t("login.Password")}</span>
@@ -40,7 +39,9 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
           </div>
           <Field type="password" name="password" />
         </div>
-        {touched.password && errors.password && <div>{t(errors.password)}</div>}
+        {touched.password && errors.password && (
+          <div className="has-error">{t(errors.password)}</div>
+        )}
       </div>
 
       <button
@@ -55,8 +56,9 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
 // The type of props MyForm receives
 interface MyFormProps {
+  fetchAuth: (values: object) => void;
   initialEmail?: string;
-  message: string; // if this passed all the way through you might do this or make a union type
+  message: string; // if this passed all the way through you might do this or make a union type,
 }
 
 const isValidEmail = (email: string) => {
@@ -69,6 +71,7 @@ const MyForm = withFormik<MyFormProps, FormValues>({
   // Transform outer props into form values
   mapPropsToValues: props => {
     return {
+      ...props,
       email: props.initialEmail || "",
       password: ""
     };
@@ -76,12 +79,8 @@ const MyForm = withFormik<MyFormProps, FormValues>({
 
   // Add a custom validation function (this can be async too!)
   validate: (values: FormValues) => {
-    // const { t } = useTranslation();
-    let errors: FormikErrors<FormValues> = {
-      email: "",
-      password: ""
-    };
-    // console.log('test',t);
+    let errors: FormikErrors<FormValues> = {};
+
     if (!values.email) {
       errors.email = "validation.required_email";
     } else if (!isValidEmail(values.email)) {
@@ -93,15 +92,17 @@ const MyForm = withFormik<MyFormProps, FormValues>({
     return errors;
   },
 
-  handleSubmit: values => {
+  handleSubmit: (values, { props }) => {
     // do submitting things
-    console.log("values", values);
+
+    props.fetchAuth(values);
   }
 })(InnerForm);
 
-const LogInForm = () => (
+// Use <MyForm /> wherevs
+const LogInForm = props => (
   <div>
-    <MyForm message="Sign up" />
+    <MyForm {...props} message="Sign up" />
   </div>
 );
 

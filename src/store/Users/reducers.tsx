@@ -30,7 +30,8 @@ export const usersReducer: Reducer<UsersState, UsersAction> = (
     case UsersActionTypes.ADD_USER:
     case UsersActionTypes.EDIT_USER:
       return { ...state, loading: true };
-
+    case UsersActionTypes.RESET_EDIT_DATA:
+      return { ...state, editUserData: null };
     case UsersActionTypes.FETCH_USER_FAIL:
     case UsersActionTypes.FETCH_USERS_FAIL:
     case UsersActionTypes.ADD_USER_FAIL:
@@ -62,7 +63,8 @@ export const usersReducer: Reducer<UsersState, UsersAction> = (
     case UsersActionTypes.DELETE_USER_SUCCESS:
       return {
         ...state,
-        userList: { ..._.omit(state.userList, action.payload) }
+        loading: false,
+        editUserData: null,
       };
 
     default:

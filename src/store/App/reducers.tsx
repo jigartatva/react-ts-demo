@@ -1,20 +1,24 @@
-import { AppState, AppActionTypes, TOGGLE_SIDEBAR } from "./types";
+import _ from 'lodash';
+import { AppAction } from './actions';
+import { AppActionTypes } from './types';
+import { Reducer } from 'redux';
 
-const initialState: AppState = {
+export interface AppState {
+  showSidebar: boolean;
+}
+
+const initialState = {
   showSidebar: true
 };
 
-export function appReducer(
+export const appReducer: Reducer<AppState, AppAction> = (
   state = initialState,
-  action: AppActionTypes
-): AppState {
+  action
+) => {
   switch (action.type) {
-    case TOGGLE_SIDEBAR:
-      return {
-        ...state,
-        showSidebar: !state.showSidebar
-      };
+    case AppActionTypes.TOGGLE_SIDEBAR:
+      return { ...state, showSidebar: !state.showSidebar };
     default:
       return state;
   }
-}
+};
