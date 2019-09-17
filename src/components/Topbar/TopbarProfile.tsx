@@ -3,6 +3,7 @@ import DownIcon from "mdi-react/ChevronDownIcon";
 import { Collapse } from "reactstrap";
 import TopbarMenuLink from "./TopbarMenuLink";
 import { User } from "../../models/users";
+import { useTranslation } from "react-i18next";
 
 const Ava = require("../../assets/ava.png");
 
@@ -18,6 +19,7 @@ const TopbarProfile = (props: TopbarProfileProps) => {
     setCollapse(!collapse);
   };
   const { userInfo } = props;
+  const { t } = useTranslation();
 
   return (
     <div className="topbar__profile">
@@ -35,7 +37,7 @@ const TopbarProfile = (props: TopbarProfileProps) => {
         <div className="topbar__menu">
           <a className="topbar__link" href="#" onClick={() => props.logout()}>
             <span className={`topbar__link-icon lnr lnr-exit`} />
-            <p className="topbar__link-title">Logout</p>
+            <p className="topbar__link-title">{t("Logout")}</p>
           </a>
         </div>
       </Collapse>

@@ -1,13 +1,13 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-
+import { DEFAULT_LANG } from "../constants/appConfig";
 import resources from "./resources";
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources,
-    lng: "en",
+    lng: DEFAULT_LANG,
     interpolation: {
       escapeValue: false // react already safes from xss
     }

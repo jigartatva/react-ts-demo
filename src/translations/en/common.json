@@ -1,8 +1,20 @@
 {
   "validation": {
-    "required_email": "Email is required",
+    "required_email": "Please enter email address",
     "invalid_email": "Invalid email address",
-    "required_password": "Password is required"
+    "required_password": "Password is required",
+    "required_first_name": "Please enter first name",
+    "required_last_name": "Please enter last name",
+    "required_dob": "Please enter birthdate",
+    "required_address": "Please enter address",
+    "required_bio": "Please enter bio"
+  },
+  "Logout": "Logout",
+  "404": "Ooops! The page you are looking for could not be found :(",
+  "sidebar": {
+    "Dashboard": "Dashboard",
+    "Users Layout 1": "Users Layout 1",
+    "Users Layout 2": "Users Layout 2"
   },
   "login": {
     "welcome_to": "Welcome to",
@@ -14,5 +26,28 @@
     "Password": "Password",
     "Sign In": "Sign In",
     "Remember Me": "Remember Me"
+  },
+  "users": {
+    "Users": "Users",
+    "Create a new user": "Create a new user",
+    "User Details": "User Details",
+    "Update user": "Update user",
+    "Search": "Search"
+  },
+  "actions": {
+    "Action": "Action",
+    "cancel": "Cancel",
+    "submit": "Submit"
+  },
+  "form": {
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Email": "Email",
+    "DOB": "DOB",
+    "Gender": "Gender",
+    "Male": "Male",
+    "Female": "Female",
+    "Address": "Address",
+    "Bio": "Bio"
   }
 }

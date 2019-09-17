@@ -1,5 +1,3 @@
-import { ThunkAction } from 'redux-thunk';
-
 //action type for auth 
 export enum AuthActionTypes {
   FETCH_AUTH = 'FETCH_AUTH',

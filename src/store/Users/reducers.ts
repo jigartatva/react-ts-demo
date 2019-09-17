@@ -1,7 +1,8 @@
+import { Reducer } from 'redux';
 import _ from 'lodash';
+
 import { UsersAction } from './actions';
 import { UsersActionTypes } from './types';
-import { Reducer } from 'redux';
 import { User } from '../../models/users';
 
 

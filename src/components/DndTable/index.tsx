@@ -3,7 +3,6 @@ import { Table } from "antd";
 import { DndProvider, DragSource, DropTarget } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import update from "immutability-helper";
-import { User } from "../../models/users";
 
 let dragingIndex = -1;
 
@@ -58,19 +57,12 @@ const rowTarget = {
   drop(props, monitor) {
     const dragIndex = monitor.getItem().index;
     const hoverIndex = props.index;
-
     // Don't replace items with themselves
     if (dragIndex === hoverIndex) {
       return;
     }
-
     // Time to actually perform the action
     props.moveRow(dragIndex, hoverIndex);
-
-    // Note: we're mutating the monitor item here!
-    // Generally it's better to avoid mutations,
-    // but it's good here for the sake of performance
-    // to avoid expensive index searches.
     monitor.getItem().index = hoverIndex;
   }
 };
@@ -86,6 +78,7 @@ const DragableBodyRow = DropTarget("row", rowTarget, (connect, monitor) => ({
 
 interface DndTableProps {
   loading: boolean;
+  local?: string;
   data: (object)[];
   columns: (object)[];
   onClickRow: (event: SyntheticEvent, redord: object) => void;
@@ -94,18 +87,20 @@ interface DndTableProps {
 interface DndTableState {
   data: (object)[];
   columns: (object)[];
+  local: string;
 }
 
 export default class DndTable extends React.Component<
   DndTableProps,
   DndTableState
-> {
+  > {
   constructor(props: DndTableProps) {
     super(props);
   }
   state: DndTableState = {
     data: [],
-    columns: []
+    columns: [],
+    local: ""
   };
 
   components = {
@@ -127,17 +122,18 @@ export default class DndTable extends React.Component<
     );
   };
   componentDidMount(): void {
-    const { data, columns } = this.props;
-    this.setState({ data, columns });
+    const { data, columns, local } = this.props;
+    this.setState({ data, columns, local });
   }
 
   componentDidUpdate(prevPorps): void {
     if (
-      prevPorps.loading !== this.props.loading &&
-      this.props.loading === false
+      (prevPorps.loading !== this.props.loading &&
+        this.props.loading === false) ||
+      (prevPorps.local !== this.props.local)
     ) {
-      const { data } = this.props;
-      this.setState({ data });
+      const { data, columns } = this.props;
+      this.setState({ data, columns });
     }
   }
 
@@ -159,7 +155,7 @@ export default class DndTable extends React.Component<
             moveRow: this.moveRow,
             onClick: event => {
               onClickRow(event, record);
-            } // click row
+            }
           })}
         />
       </DndProvider>

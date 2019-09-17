@@ -1,8 +1,9 @@
 import { ThunkAction } from 'redux-thunk';
 import { Dispatch } from 'redux';
+import { AxiosResponse } from 'axios';
+
 import { RootState, RootActions } from '../../store/rootReducer';
 import { User } from '../../models/users';
-import { AxiosResponse } from 'axios';
 import { UsersActionTypes } from './types';
 import { fetchUsersService, fetchUserService, addUserService, editUserService, deleteUserService } from '../../services/users';
 
@@ -132,7 +133,7 @@ const handleAddUserSuccess = (
   response: User
 ) => {
   dispatch({ type: UsersActionTypes.ADD_USER_SUCCESS, payload: response });
- 
+
 };
 
 const handleAddUserFail = (dispatch: Dispatch<AddUserFail>) => {
@@ -163,7 +164,7 @@ export const editUser = (
 ): ThunkResult<void> => async dispatch => {
   handleEditUser(dispatch);
   try {
-    const response: AxiosResponse<User> =  await editUserService(editedUser);
+    const response: AxiosResponse<User> = await editUserService(editedUser);
     handleEditUserSuccess(dispatch, response.data);
     dispatch(fetchUsers());
   } catch (e) {
@@ -180,7 +181,7 @@ const handleEditUserSuccess = (
   editedUser: User
 ) => {
   dispatch({ type: UsersActionTypes.EDIT_USER_SUCCESS, payload: editedUser });
- 
+
 };
 
 const handleEditUserFail = (dispatch: Dispatch<EditUserFail>) => {
@@ -216,7 +217,7 @@ export const deleteUser = (
       payload: deletedId
     });
     dispatch(fetchUsers());
-    
+
   } catch (e) {
     dispatch({ type: UsersActionTypes.DELETE_USER_FAIL });
   }

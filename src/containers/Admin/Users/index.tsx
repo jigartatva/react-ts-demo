@@ -1,8 +1,10 @@
 import React, { SyntheticEvent } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import DndTable from "../../../components/DndTable";
 import { Icon, Button, Modal, Col, Row } from "antd";
+import { withTranslation, WithTranslation } from "react-i18next";
+
+import DndTable from "../../../components/DndTable";
 import AddEditUser from "./AddEditUser";
 import {
   fetchUsers,
@@ -34,8 +36,8 @@ interface UsersState {
   showDetails: boolean;
 }
 
-class Users extends React.Component<UsersProps, UsersState> {
-  constructor(props: UsersProps) {
+class Users extends React.Component<UsersProps & WithTranslation, UsersState> {
+  constructor(props: UsersProps & WithTranslation) {
     super(props);
   }
 
@@ -63,7 +65,7 @@ class Users extends React.Component<UsersProps, UsersState> {
       onOk: () => {
         this.props.deleteUser(id);
       },
-      onCancel() {}
+      onCancel() { }
     });
   };
 
@@ -102,37 +104,40 @@ class Users extends React.Component<UsersProps, UsersState> {
   }
 
   render() {
-    const { users, loading, editUserData } = this.props;
+    const { users, loading, editUserData, t, i18n } = this.props;
     const { visible, showDetails } = this.state;
-
-    let column = [
+    const column = [
       {
-        title: "First name",
+        title: t("form.First Name"),
         dataIndex: "first_name",
-        key: "first_name"
+        key: "first_name",
+        sorter: (a, b) => a.first_name.length - b.first_name.length
       },
       {
-        title: "Last Name",
+        title: t("form.Last Name"),
         dataIndex: "last_name",
-        key: "last_name"
+        key: "last_name",
+        sorter: (a, b) => a.last_name.length - b.last_name.length
       },
       {
-        title: "Email",
+        title: t("form.Email"),
         dataIndex: "email",
         key: "email"
       },
       {
-        title: "Gender",
+        title: t("form.Gender"),
         dataIndex: "gender",
-        key: "gender"
+        key: "gender",
+        filters: [{ text: "Male", value: "M" }, { text: "Female", value: "F" }],
+        onFilter: (value, record) => record.gender.includes(value)
       },
       {
-        title: "Address",
+        title: t("form.Address"),
         dataIndex: "address",
         key: "address"
       },
       {
-        title: "DOB",
+        title: t("form.DOB"),
         dataIndex: "dob",
         key: "dob",
         render: (text, record) => {
@@ -140,7 +145,7 @@ class Users extends React.Component<UsersProps, UsersState> {
         }
       },
       {
-        title: "Action",
+        title: t("actions.Action"),
         dataIndex: "",
         key: "x",
         render: (text, record) => {
@@ -175,7 +180,7 @@ class Users extends React.Component<UsersProps, UsersState> {
       <div className="users container">
         <Row>
           <Col md={12}>
-            <h3 className="page-title">Users</h3>
+            <h3 className="page-title">{t("users.Users")}</h3>
           </Col>
           <Col md={12}>
             <Button
@@ -191,6 +196,7 @@ class Users extends React.Component<UsersProps, UsersState> {
         <Row>
           <div className="block">
             <DndTable
+              local={i18n.language}
               onClickRow={this.showUserDetails}
               loading={loading}
               data={users}
@@ -226,4 +232,4 @@ const mapStateToProps = (state: RootState) => {
 export default connect(
   mapStateToProps,
   { fetchUsers, addUser, editUser, fetchUser, deleteUser, resetEditData }
-)(Users);
+)(withTranslation()(Users));

@@ -1,27 +1,27 @@
-@import './settings/variable';  //themes' colors
+@import "./settings/variable"; //themes' colors
 
 //base...
-@import './generic/normalize.scss';
-@import './generic/box-sizing.scss';
-@import './base/scaffolding.scss';         // styles of base elements
-@import './base/typography.scss';          // base styles of h1-h6, p, span
+@import "./generic/normalize.scss";
+@import "./generic/box-sizing.scss";
+@import "./base/scaffolding.scss"; // styles of base elements
+@import "./base/typography.scss"; // base styles of h1-h6, p, span
 
 //components...
-@import './component/btn.scss';
-@import './component/card.scss';
-@import './component/chat.scss';
-@import './component/sidebar.scss';
-@import './component/topbar.scss';
-@import './component/load.scss';
-@import './component/form.scss';
-@import './component/checkbox.scss';
-@import './component/radio.scss';
+@import "./component/btn.scss";
+@import "./component/card.scss";
+@import "./component/chat.scss";
+@import "./component/sidebar.scss";
+@import "./component/topbar.scss";
+@import "./component/load.scss";
+@import "./component/form.scss";
+@import "./component/checkbox.scss";
+@import "./component/radio.scss";
 
 //pages...
-@import './containers/account.scss';
+@import "./containers/account.scss";
 
 //objects...
-@import 'objects/layout.scss';
+@import "objects/layout.scss";
 
 //Custom
-@import './custom.scss';
+@import "./custom.scss";

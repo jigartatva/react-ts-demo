@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Badge } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
@@ -40,8 +39,8 @@ const SidebarLink: React.SFC<SidebarLinkProps> = ({
               <span>New</span>
             </Badge>
           ) : (
-            ""
-          )}
+              ""
+            )}
         </p>
       </li>
     </NavLink>

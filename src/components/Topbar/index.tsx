@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import TopbarSidebarButton from "./TopbarSidebarButton";
 import TopbarProfile from "./TopbarProfile";
+import TopbarLanguage from './TopbarLanguage';
 import { User } from "../../models/users";
 
 interface TopbarProps {
@@ -23,6 +24,7 @@ const Topbar = ({
           <Link className="topbar__logo" to="/admin" />
         </div>
         <div className="topbar__right">
+          <TopbarLanguage />
           <TopbarProfile userInfo={userInfo} logout={logout} />
         </div>
       </div>
