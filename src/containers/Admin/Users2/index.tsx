@@ -19,7 +19,6 @@ import { RootState } from "../../../store/rootReducer";
 import { User } from "../../../models/users";
 import UserTopbar from "./UserTopbar";
 import ContactCard from "../../../components/Card/ContactCard";
-import Search from "../../../components/Search";
 import UserDetails from "../Users/UserDetails";
 
 const Avatar = require("../../../assets/avatar-demo.png");
@@ -114,7 +113,6 @@ class Users extends React.Component<UsersProps, UsersState> {
         </Row>
         <div className={chatClass + " block"}>
           <div className={contactsClass}>
-            <Search />
             <div
               onClick={openContacts ? this.onOpenContacts : null}
               className="chat__contacts"

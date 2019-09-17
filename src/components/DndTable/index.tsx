@@ -3,7 +3,6 @@ import { Table } from "antd";
 import { DndProvider, DragSource, DropTarget } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import update from "immutability-helper";
-import { User } from "../../models/users";
 
 let dragingIndex = -1;
 
@@ -79,6 +78,7 @@ const DragableBodyRow = DropTarget("row", rowTarget, (connect, monitor) => ({
 
 interface DndTableProps {
   loading: boolean;
+  local?: string;
   data: (object)[];
   columns: (object)[];
   onClickRow: (event: SyntheticEvent, redord: object) => void;
@@ -87,6 +87,7 @@ interface DndTableProps {
 interface DndTableState {
   data: (object)[];
   columns: (object)[];
+  local: string;
 }
 
 export default class DndTable extends React.Component<
@@ -98,7 +99,8 @@ export default class DndTable extends React.Component<
   }
   state: DndTableState = {
     data: [],
-    columns: []
+    columns: [],
+    local: ""
   };
 
   components = {
@@ -120,17 +122,18 @@ export default class DndTable extends React.Component<
     );
   };
   componentDidMount(): void {
-    const { data, columns } = this.props;
-    this.setState({ data, columns });
+    const { data, columns, local } = this.props;
+    this.setState({ data, columns, local });
   }
 
   componentDidUpdate(prevPorps): void {
     if (
-      prevPorps.loading !== this.props.loading &&
-      this.props.loading === false
+      (prevPorps.loading !== this.props.loading &&
+        this.props.loading === false) ||
+      (prevPorps.local !== this.props.local)
     ) {
-      const { data } = this.props;
-      this.setState({ data });
+      const { data, columns } = this.props;
+      this.setState({ data, columns });
     }
   }
 
