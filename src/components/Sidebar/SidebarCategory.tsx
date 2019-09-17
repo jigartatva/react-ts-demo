@@ -7,7 +7,7 @@ interface SidebarCategoryProps {
   title: string;
   icon?: string;
   isNew?: boolean;
-  children?: any;
+  children?: [];
 }
 
 const SidebarCategoryDefaultProps: SidebarCategoryProps = {

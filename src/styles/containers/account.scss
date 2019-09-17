@@ -244,3 +244,16 @@
     flex-wrap: wrap;
   }
 }
+.info-block{
+  margin-bottom: 30px;
+  .info-label{
+    font-size: 14px;
+    color: #000000;
+    display: block;
+  }
+  .info-value{
+    font-size: 18px;
+    color: rgba(0,0,0,0.65);
+    display: block;
+  }
+}

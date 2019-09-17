@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 interface FormValues {
   email: string;
   password: string;
+  remember: boolean;
 }
 
 interface OtherProps {
@@ -15,8 +16,9 @@ interface OtherProps {
 
 // Aside: You may see InjectedFormikProps<OtherProps, FormValues> instead of what comes below in older code.. InjectedFormikProps was artifact of when Formik only exported a HoC. It is also less flexible as it MUST wrap all props (it passes them through).
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
-  const { touched, errors, isSubmitting, message } = props;
+  const { touched, errors, isSubmitting, message, values } = props;
   const { t } = useTranslation();
+  let remember = values.remember ? true : false;
   return (
     <Form className="form">
       <div className="form__form-group">
@@ -42,6 +44,26 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
         {touched.password && errors.password && (
           <div className="has-error">{t(errors.password)}</div>
         )}
+      </div>
+
+      <div className="form__form-group">
+        <div className="form__form-group-field ">
+          <div className="custom-checkbox custom-checkbox__inline">
+            <Field
+              onClick={e => {
+                if (e.target.value) {
+                  localStorage.setItem("remember", e.target.value.toString());
+                } else {
+                  localStorage.removeItem("remember");
+                }
+              }}
+              type="checkbox"
+              checked={remember}
+              name="remember"
+            />
+            <label htmlFor="Remember Me">{t("login.Remember Me")}</label>
+          </div>
+        </div>
       </div>
 
       <button
@@ -70,10 +92,18 @@ const isValidEmail = (email: string) => {
 const MyForm = withFormik<MyFormProps, FormValues>({
   // Transform outer props into form values
   mapPropsToValues: props => {
+    let email = localStorage.getItem("re_email")
+      ? localStorage.getItem("re_email")
+      : "";
+    let password = localStorage.getItem("re_pass")
+      ? localStorage.getItem("re_pass")
+      : "";
+    let remember = localStorage.getItem("remember") ? true : false;
     return {
       ...props,
-      email: props.initialEmail || "",
-      password: ""
+      email: email,
+      password: password,
+      remember: remember
     };
   },
 
@@ -94,6 +124,15 @@ const MyForm = withFormik<MyFormProps, FormValues>({
 
   handleSubmit: (values, { props }) => {
     // do submitting things
+    if (values.remember) {
+      localStorage.setItem("re_email", values.email);
+      localStorage.setItem("re_pass", values.password);
+      localStorage.setItem("remember", values.remember.toString());
+    } else {
+      localStorage.removeItem("re_email");
+      localStorage.removeItem("re_pass");
+      localStorage.removeItem("remember");
+    }
 
     props.fetchAuth(values);
   }

@@ -7,15 +7,11 @@ import LogInForm from "../../components/LogInForm";
 import { RootState } from "../../store/rootReducer";
 import FacebookIcon from "mdi-react/FacebookIcon";
 import GooglePlusIcon from "mdi-react/GooglePlusIcon";
-import {
-  useTranslation,
-  withTranslation,
-  WithTranslation
-} from "react-i18next";
+import { withTranslation, WithTranslation } from "react-i18next";
 
 interface LoginProps extends WithTranslation {
   loading: boolean;
-  fetchAuth: () => any;
+  fetchAuth: () => void;
 }
 
 interface LoginState {}
@@ -45,23 +41,6 @@ class Login extends React.Component<LoginProps, LoginState> {
               </h4>
             </div>
             <LogInForm fetchAuth={fetchAuth} />
-            <div className="account__or">
-              <p>{t("login.Or Easily Using")}</p>
-            </div>
-            <div className="account__social">
-              <Link
-                className="account__social-btn account__social-btn--facebook"
-                to="/admin"
-              >
-                <FacebookIcon />
-              </Link>
-              <Link
-                className="account__social-btn account__social-btn--google"
-                to="/admin"
-              >
-                <GooglePlusIcon />
-              </Link>
-            </div>
           </div>
         </div>
       </div>

@@ -25,7 +25,7 @@ export const usersReducer: Reducer<UsersState, UsersAction> = (
 ) => {
   switch (action.type) {
     case UsersActionTypes.FETCH_USER:
-        return { ...state, loading: false };
+      return { ...state, loading: false };
     case UsersActionTypes.FETCH_USERS:
     case UsersActionTypes.ADD_USER:
     case UsersActionTypes.EDIT_USER:
@@ -44,7 +44,7 @@ export const usersReducer: Reducer<UsersState, UsersAction> = (
         editUserData: action.payload,
         loading: false
       };
-    case UsersActionTypes.EDIT_USER_SUCCESS:  
+    case UsersActionTypes.EDIT_USER_SUCCESS:
     case UsersActionTypes.ADD_USER_SUCCESS:
       return {
         ...state,

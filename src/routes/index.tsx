@@ -6,24 +6,33 @@ import Login from "../containers/LogIn";
 import Users from "../containers/Admin/Users";
 import Users2 from "../containers/Admin/Users2";
 import Layout from "../components/Layout";
+import { Spin, Icon } from "antd";
 
 interface RouteProps {
   isAuthenticated: boolean;
-  loading: boolean;
+  loadingUserData: boolean;
 }
 
 const Routes = (props: RouteProps) => {
-  const { isAuthenticated, loading } = props;
+  const { isAuthenticated, loadingUserData } = props;
   let routes = null;
+  const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
-  if (!isAuthenticated) {
+  //public routes
+  if (!isAuthenticated && !loadingUserData) {
     routes = (
       <Switch>
         <Route path="/" component={Login} />
       </Switch>
     );
-  }
-  if (isAuthenticated) {
+  } else if (loadingUserData) {
+    routes = (
+      <div className="screen-loader">
+        <Spin indicator={antIcon} />
+      </div>
+    );
+  } else {
+    //private routes
     routes = (
       <Layout>
         <div className="container__wrap">
@@ -38,7 +47,11 @@ const Routes = (props: RouteProps) => {
       </Layout>
     );
   }
-  return <HashRouter>{routes}</HashRouter>;
+  return (
+    <HashRouter>
+      <>{routes}</>
+    </HashRouter>
+  );
 };
 
 export default Routes;

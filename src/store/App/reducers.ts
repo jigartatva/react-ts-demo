@@ -1,14 +1,14 @@
-import _ from 'lodash';
-import { AppAction } from './actions';
-import { AppActionTypes } from './types';
-import { Reducer } from 'redux';
+import _ from "lodash";
+import { AppAction } from "./actions";
+import { AppActionTypes } from "./types";
+import { Reducer } from "redux";
 
 export interface AppState {
   showSidebar: boolean;
 }
 
 const initialState = {
-  showSidebar: true
+  showSidebar: false
 };
 
 export const appReducer: Reducer<AppState, AppAction> = (

@@ -7,8 +7,8 @@ import { UsersActionTypes } from './types';
 import { fetchUsersService, fetchUserService, addUserService, editUserService, deleteUserService } from '../../services/users';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootActions>;
-// FETCH USERS
 
+//interface for user actions
 interface FetchUsers {
   type: UsersActionTypes.FETCH_USERS;
 }

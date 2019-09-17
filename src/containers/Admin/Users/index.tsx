@@ -1,8 +1,7 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
 import DndTable from "../../../components/DndTable";
-import { demoData } from "../../../constants/demoData";
 import { Icon, Button, Modal, Col, Row } from "antd";
 import AddEditUser from "./AddEditUser";
 import {
@@ -22,7 +21,7 @@ interface UsersProps {
   users: User[];
   loading: boolean;
   editUserData: User;
-  fetchUsers: () => any;
+  fetchUsers: () => void;
   fetchUser: (id: number) => void;
   addUser: (user: User) => void;
   editUser: (user: User) => void;
@@ -32,6 +31,7 @@ interface UsersProps {
 
 interface UsersState {
   visible: boolean;
+  showDetails: boolean;
 }
 
 class Users extends React.Component<UsersProps, UsersState> {
@@ -40,7 +40,8 @@ class Users extends React.Component<UsersProps, UsersState> {
   }
 
   state: UsersState = {
-    visible: false
+    visible: false,
+    showDetails: false
   };
 
   showDrawer = (): void => {
@@ -66,11 +67,31 @@ class Users extends React.Component<UsersProps, UsersState> {
     });
   };
 
+  showUserDetails = (e: SyntheticEvent, record: User): void => {
+    this.props.fetchUser(record.id);
+    this.setState({
+      visible: true,
+      showDetails: true
+    });
+  };
+
+  onEdit = (record: User): void => {
+    this.setState({
+      showDetails: false
+    });
+    this.props.fetchUser(record.id);
+  };
+
   componentDidMount(): void {
-    this.props.fetchUsers();
+    const { users } = this.props;
+    //fetch user only if empty
+    if (_.isEmpty(users)) {
+      this.props.fetchUsers();
+    }
   }
 
   componentDidUpdate(prevProps): void {
+    //show drawer edit user data present in store
     if (
       !_.isEmpty(this.props.editUserData) &&
       this.props.editUserData !== prevProps.editUserData &&
@@ -82,59 +103,73 @@ class Users extends React.Component<UsersProps, UsersState> {
 
   render() {
     const { users, loading, editUserData } = this.props;
-    const { visible } = this.state;
+    const { visible, showDetails } = this.state;
 
     let column = [
-            {
-                title: 'First name',
-                dataIndex: 'first_name',
-                key: "first_name",
-            },
-            {
-                title: 'Last Name',
-                dataIndex: 'last_name',
-                key: "last_name",
-            },
-            {
-                title: 'Email',
-                dataIndex: 'email',
-                key: "email",
-            },
-            {
-                title: 'Gender',
-                dataIndex: 'gender',
-                key: "gender",
-            },
-            {
-                title: 'Address',
-                dataIndex: 'address',
-                key: "address",
-            },
-            {
-                title: 'DOB',
-                dataIndex: 'dob',
-                key: "dob",
-                render: (text, record) => {
-                    
-                    return  text
-                },
-            },
-            {
-                title: 'Action',
-                dataIndex: '',
-                key: 'x',
-                render: (text, record) => {
-
-                    return (
-                        <div className="action">
-                            <Icon style={{ cursor: "pointer" }} key="edit" type="edit" onClick={(e) => this.props.fetchUser(record.id)} /> |
-                            <Icon style={{ cursor: "pointer" }} key="delete" type="delete" onClick={(e) => this.showConfirm(record.id)} />
-                        </div>
-                    )
-                },
-            }
-
-        ];
+      {
+        title: "First name",
+        dataIndex: "first_name",
+        key: "first_name"
+      },
+      {
+        title: "Last Name",
+        dataIndex: "last_name",
+        key: "last_name"
+      },
+      {
+        title: "Email",
+        dataIndex: "email",
+        key: "email"
+      },
+      {
+        title: "Gender",
+        dataIndex: "gender",
+        key: "gender"
+      },
+      {
+        title: "Address",
+        dataIndex: "address",
+        key: "address"
+      },
+      {
+        title: "DOB",
+        dataIndex: "dob",
+        key: "dob",
+        render: (text, record) => {
+          return text;
+        }
+      },
+      {
+        title: "Action",
+        dataIndex: "",
+        key: "x",
+        render: (text, record) => {
+          return (
+            <div className="action">
+              <Icon
+                style={{ cursor: "pointer" }}
+                key="edit"
+                type="edit"
+                onClick={e => {
+                  e.stopPropagation();
+                  this.onEdit(record);
+                }}
+              />{" "}
+              |
+              <Icon
+                style={{ cursor: "pointer" }}
+                key="delete"
+                type="delete"
+                onClick={e => {
+                  e.stopPropagation();
+                  this.showConfirm(record.id);
+                }}
+              />
+            </div>
+          );
+        }
+      }
+    ];
 
     return (
       <div className="users container">
@@ -155,12 +190,18 @@ class Users extends React.Component<UsersProps, UsersState> {
         </Row>
         <Row>
           <div className="block">
-            <DndTable loading={loading} data={users} columns={column} />
+            <DndTable
+              onClickRow={this.showUserDetails}
+              loading={loading}
+              data={users}
+              columns={column}
+            />
           </div>
         </Row>
         <Row>
           {visible && (
             <AddEditUser
+              showDetails={showDetails}
               visible={visible}
               editUserData={editUserData}
               onClose={this.onClose}

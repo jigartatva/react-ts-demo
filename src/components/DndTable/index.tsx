@@ -1,16 +1,17 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import { Table } from "antd";
 import { DndProvider, DragSource, DropTarget } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import update from "immutability-helper";
+import { User } from "../../models/users";
 
 let dragingIndex = -1;
 
 interface BodyRowProps {
   isOver?: boolean;
-  connectDragSource: any;
-  connectDropTarget: any;
-  moveRow: any;
+  connectDragSource: (e: JSX.Element) => JSX.Element;
+  connectDropTarget: (e: JSX.Element) => JSX.Element;
+  moveRow: (dragIndex: number, hoverIndex: number) => void;
   index: number;
   className: string;
   style: React.CSSProperties;
@@ -87,6 +88,7 @@ interface DndTableProps {
   loading: boolean;
   data: (object)[];
   columns: (object)[];
+  onClickRow: (event: SyntheticEvent, redord: object) => void;
 }
 
 interface DndTableState {
@@ -140,7 +142,7 @@ export default class DndTable extends React.Component<
   }
 
   render() {
-    const { loading } = this.props;
+    const { loading, onClickRow } = this.props;
     const { data, columns } = this.state;
 
     return (
@@ -151,10 +153,13 @@ export default class DndTable extends React.Component<
           dataSource={data}
           className="dnd-table"
           components={this.components}
-          rowKey={(record: any) => record.id}
-          onRow={(record, index) => ({
+          rowKey={(record: object, index: number) => `row-${index.toString()}`}
+          onRow={(record: object, index: number) => ({
             index,
-            moveRow: this.moveRow
+            moveRow: this.moveRow,
+            onClick: event => {
+              onClickRow(event, record);
+            } // click row
           })}
         />
       </DndProvider>

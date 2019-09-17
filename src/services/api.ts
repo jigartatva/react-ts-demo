@@ -2,6 +2,7 @@ import axios from "axios";
 import { notification } from "antd";
 import { API_BASE_URL } from "../constants/appConfig";
 
+//create axios for server call and headers
 const instance = axios.create({
   baseURL: API_BASE_URL
 });
@@ -22,9 +23,10 @@ instance.interceptors.request.use(
   }
 );
 
-// Add a response interceptor
+// Add a response interceptor for globale notifications and responce log
 instance.interceptors.response.use(
   function(response) {
+    //define global notification
     if (response.config.method === "post" && response.status === 200) {
       openNotificationWithIcon("success", "Record added successfully");
     } else if (response.config.method === "patch" && response.status === 200) {
