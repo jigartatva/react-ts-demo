@@ -1,14 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import TopbarSidebarButton from "./TopbarSidebarButton";
 import TopbarProfile from "./TopbarProfile";
+import { User } from "../../models/users";
 
 interface TopbarProps {
   changeMobileSidebarVisibility?: () => void;
+  logout: () => void;
+  userInfo: User;
 }
 
-const Topbar = ({ changeMobileSidebarVisibility }: TopbarProps) => {
+const Topbar = ({
+  changeMobileSidebarVisibility,
+  logout,
+  userInfo
+}: TopbarProps) => {
   return (
     <div className="topbar">
       <div className="topbar__wrapper">
@@ -17,7 +23,7 @@ const Topbar = ({ changeMobileSidebarVisibility }: TopbarProps) => {
           <Link className="topbar__logo" to="/admin" />
         </div>
         <div className="topbar__right">
-          <TopbarProfile />
+          <TopbarProfile userInfo={userInfo} logout={logout} />
         </div>
       </div>
     </div>

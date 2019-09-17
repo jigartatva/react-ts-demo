@@ -1,0 +1,76 @@
+//UI
+.block {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 1.25rem;
+}
+
+//Button
+.ant-btn {
+  .anticon {
+    vertical-align: text-top;
+  }
+}
+
+//Table
+.dnd-table {
+  background-color: #fff;
+  overflow: auto;
+}
+
+//Form
+.ant-form-vertical .ant-form-item-label {
+  padding: 0 0 0;
+  line-height: 1;
+}
+.ant-form-item {
+  margin-bottom: 0px;
+}
+
+//Icon
+.dnd-table {
+  .anticon-edit {
+    color: #563c3c;
+  }
+  .anticon-delete {
+    color: #ff4d4f;
+  }
+}
+.has-error {
+  color: #ff4d4f;
+}
+
+//Scroll
+.chat__scroll {
+  height: calc(100% - 55px);
+}
+
+//loader
+.screen-loader {
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  text-align: center;
+  margin-top: 10%;
+}
+
+//drawer
+.drawer-form-action {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #e9e9e9;
+  padding: 10px 16px;
+  background: #fff;
+  text-align: right;
+}
+
+@media screen and (max-width: 576px) {
+  .ant-drawer-content-wrapper {
+    width: 100% !important;
+  }
+  .block {
+    padding: 0;
+  }
+}

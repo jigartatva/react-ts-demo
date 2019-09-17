@@ -1,50 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
 import { toggleSidebar } from "../../store/App/actions";
-import { State } from "../../store/rootReducer";
-import Topbar from "../../components/Topbar";
-import Sidebar from "../../components/Sidebar";
+import { RootState } from "../../store/rootReducer";
 
 const logo = require("../../assets/logo.svg");
 
-interface DispatchProps {
-  toggleSidebar: () => void;
-  showSidebar: boolean;
-}
+interface HomeProps {}
 
-const Home = ({ toggleSidebar, showSidebar }: DispatchProps) => {
-  const sidebar = { show: showSidebar, collapse: !showSidebar };
-
-  const changeToDark = () => {
-    console.log("changeToDark");
-  };
-
-  const changeToLight = () => {
-    console.log("changeToLight");
-  };
-
-  const changeMobileSidebarVisibility = () => {
-    toggleSidebar();
-  };
-
+const Home = (props: HomeProps) => {
   return (
-    <div>
-      <Topbar changeMobileSidebarVisibility={changeMobileSidebarVisibility} />
-      {showSidebar ? <img src={logo} /> : null}
-      <Sidebar
-        sidebar={sidebar}
-        changeToDark={changeToDark}
-        changeToLight={changeToLight}
-        changeMobileSidebarVisibility={changeMobileSidebarVisibility}
-      />
+    <div className="home container text-center">
+      <img style={{ width: "50%" }} src={logo} />
     </div>
   );
 };
 
-const mapStateToProps = (state: State) => {
-  return {
-    showSidebar: state.app.showSidebar
-  };
+const mapStateToProps = (state: RootState) => {
+  return {};
 };
 
 export default connect(

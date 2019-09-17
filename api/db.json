@@ -1,0 +1,33 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "first_name": "Sebastian",
+      "last_name": "Eschweiler",
+      "dob": "2019-09-11",
+      "gender": "M",
+      "address": "dfdf",
+      "bio": "dfdf",
+      "email": "s@s.com"
+    },
+    {
+      "id": 2,
+      "first_name": "Steve",
+      "last_name": "Palmer",
+      "dob": "2019-09-24",
+      "gender": "M",
+      "address": "d",
+      "bio": "f",
+      "email": "f@ww.www"
+    },
+    {
+      "id": 3,
+      "first_name": "Ann",
+      "last_name": "Smith",
+      "dob": "",
+      "gender": "M",
+      "address": "",
+      "bio": ""
+    },
+  ]
+}

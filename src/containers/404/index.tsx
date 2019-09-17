@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Layout from "../../components/Layout";
 
 const Image404 = require("../../shared/img/404/404.png");
 

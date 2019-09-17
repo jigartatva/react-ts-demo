@@ -17,7 +17,13 @@ const SidebarContent = ({
   return (
     <div className="sidebar__content">
       <ul className="sidebar__block">
-        <SidebarLink title="Users" route="/users" icon="users" onClick={onClick} />
+        <SidebarLink title="Dashboard" route="/admin" icon="home" />
+        <SidebarLink title="Users Layout 1" route="/admin/users" icon="users" />
+        <SidebarLink
+          title="Users Layout 2"
+          route="/admin/users-2"
+          icon="users"
+        />
       </ul>
     </div>
   );

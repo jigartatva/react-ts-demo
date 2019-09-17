@@ -10,7 +10,7 @@
     "noLib": false,
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
-    "allowJs": false
+    "allowJs": true
   },
   "compileOnSave": false,
   "exclude": ["node_modules"]
