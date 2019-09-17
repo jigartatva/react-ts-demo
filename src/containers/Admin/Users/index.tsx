@@ -1,8 +1,10 @@
 import React, { SyntheticEvent } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import DndTable from "../../../components/DndTable";
 import { Icon, Button, Modal, Col, Row } from "antd";
+import { withTranslation, WithTranslation } from "react-i18next";
+
+import DndTable from "../../../components/DndTable";
 import AddEditUser from "./AddEditUser";
 import {
   fetchUsers,
@@ -34,8 +36,8 @@ interface UsersState {
   showDetails: boolean;
 }
 
-class Users extends React.Component<UsersProps, UsersState> {
-  constructor(props: UsersProps) {
+class Users extends React.Component<UsersProps & WithTranslation, UsersState> {
+  constructor(props: UsersProps & WithTranslation) {
     super(props);
   }
 
@@ -63,7 +65,7 @@ class Users extends React.Component<UsersProps, UsersState> {
       onOk: () => {
         this.props.deleteUser(id);
       },
-      onCancel() {}
+      onCancel() { }
     });
   };
 
@@ -102,7 +104,7 @@ class Users extends React.Component<UsersProps, UsersState> {
   }
 
   render() {
-    const { users, loading, editUserData } = this.props;
+    const { users, loading, editUserData, t } = this.props;
     const { visible, showDetails } = this.state;
 
     let column = [
@@ -175,7 +177,7 @@ class Users extends React.Component<UsersProps, UsersState> {
       <div className="users container">
         <Row>
           <Col md={12}>
-            <h3 className="page-title">Users</h3>
+            <h3 className="page-title">{t("users.Users")}</h3>
           </Col>
           <Col md={12}>
             <Button
@@ -226,4 +228,4 @@ const mapStateToProps = (state: RootState) => {
 export default connect(
   mapStateToProps,
   { fetchUsers, addUser, editUser, fetchUser, deleteUser, resetEditData }
-)(Users);
+)(withTranslation()(Users));

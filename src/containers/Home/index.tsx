@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import { toggleSidebar } from "../../store/App/actions";
 import { RootState } from "../../store/rootReducer";
 
 const logo = require("../../assets/logo.svg");
 
-interface HomeProps {}
+interface HomeProps { }
 
 const Home = (props: HomeProps) => {
   return (

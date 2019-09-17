@@ -1,4 +1,52 @@
 {
-  "validation": {},
-  "login": {}
+  "validation": {
+    "required_email": "Bitte geben Sie Ihre E-Mail-Adresse ein",
+    "invalid_email": "Ungültige E-Mail-Adresse",
+    "required_password": "Passwort wird benötigt",
+    "required_first_name": "Bitte Vorname eingeben",
+    "required_last_name": "Bitte Nachname eingeben",
+    "required_dob": "Bitte geben Sie das Geburtsdatum ein",
+    "required_address": "Bitte geben Sie die Adresse ein",
+    "required_bio": "Bitte Bio eingeben"
+  },
+  "Logout": "Ausloggen",
+  "404": "Hoppla! Die von Ihnen gesuchte Seite wurde nicht gefunden :(",
+  "sidebar": {
+    "Dashboard": "Instrumententafel",
+    "Users Layout 1": "Benutzerlayout 1",
+    "Users Layout 2": "Benutzerlayout 2"
+  },
+  "login": {
+    "welcome_to": "Willkommen zu",
+    "tatva": "Tatva",
+    "dev": "DEV",
+    "Start your business easily": "Starten Sie einfach Ihr Geschäft",
+    "Or Easily Using": "Or Easily Using",
+    "Email": "Email",
+    "Password": "Passwort",
+    "Sign In": "Einloggen",
+    "Remember Me": "Behalte mich in Erinnerung"
+  },
+  "users": {
+    "Users": "Benutzer",
+    "Create a new user": "Erstellen Sie einen neuen Benutzer",
+    "User Details": "Nutzerdetails",
+    "Update user": "Benutzer aktualisieren",
+    "Search": "Suche"
+  },
+  "actions": {
+    "cancel": "Stornieren",
+    "submit": "einreichen"
+  },
+  "form": {
+    "First Name": "Vorname",
+    "Last Name": "Nachname",
+    "Email": "Email",
+    "DOB": "Geburtsdatum",
+    "Gender": "Geschlecht",
+    "Male": "Männlich",
+    "Female": "Weiblich",
+    "Address": "Adresse",
+    "Bio": "Biografie"
+  }
 }

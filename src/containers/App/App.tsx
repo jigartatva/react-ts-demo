@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import _ from "lodash";
 import { History } from "history";
+
 import Routes from "../../routes";
 import { authCheckState } from "../../store/Auth/actions";
 import { RootState } from "../../store/rootReducer";
@@ -15,7 +16,7 @@ interface AppProps {
   authCheckState: () => void;
 }
 
-interface AppState {}
+interface AppState { }
 
 class App extends React.Component<AppProps, AppState> {
   componentDidMount() {

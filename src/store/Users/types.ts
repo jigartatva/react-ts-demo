@@ -1,6 +1,4 @@
-import { ThunkAction } from 'redux-thunk';
-
-
+//action type for Users
 export enum UsersActionTypes {
   FETCH_USERS = 'FETCH_USERS',
   FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS',

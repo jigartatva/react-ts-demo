@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Collapse } from "reactstrap";
-import PropTypes from "prop-types";
 import classNames from "classnames";
 
 interface SidebarCategoryProps {

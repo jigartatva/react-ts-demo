@@ -1,12 +1,12 @@
 import React from "react";
+import { Spin, Icon } from "antd";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
-import NotFound404 from "../containers/404";
+
 import Home from "../containers/Home";
 import Login from "../containers/LogIn";
 import Users from "../containers/Admin/Users";
 import Users2 from "../containers/Admin/Users2";
 import Layout from "../components/Layout";
-import { Spin, Icon } from "antd";
 
 interface RouteProps {
   isAuthenticated: boolean;

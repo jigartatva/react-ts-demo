@@ -1,20 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { Link } from "react-router-dom";
+import { withTranslation, WithTranslation } from "react-i18next";
+
 import { fetchAuth } from "../../store/Auth/actions";
 import LogInForm from "../../components/LogInForm";
 import { RootState } from "../../store/rootReducer";
-import FacebookIcon from "mdi-react/FacebookIcon";
-import GooglePlusIcon from "mdi-react/GooglePlusIcon";
-import { withTranslation, WithTranslation } from "react-i18next";
 
 interface LoginProps extends WithTranslation {
   loading: boolean;
   fetchAuth: () => void;
 }
 
-interface LoginState {}
+interface LoginState { }
 
 class Login extends React.Component<LoginProps, LoginState> {
   constructor(props: LoginProps) {

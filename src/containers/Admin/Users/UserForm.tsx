@@ -3,16 +3,22 @@ import { Form, Radio, Input, DatePicker } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import _ from "lodash";
 import moment from "moment";
+import { withTranslation, WithTranslation } from "react-i18next";
+
 import { DATE_FORMATE } from "../../../constants/appConfig";
 import { User } from "../../../models/users";
 
-interface UserFormProps extends FormComponentProps {
+interface UserFormProps extends FormComponentProps, WithTranslation {
   editUserData: User;
 }
 
 const UserForm = (props: UserFormProps) => {
-  const { getFieldDecorator } = props.form;
-  const { editUserData } = props;
+  const {
+    editUserData,
+    t,
+    form: { getFieldDecorator }
+  } = props;
+
   let values: User = null;
   if (!_.isEmpty(props.editUserData)) {
     values = {
@@ -28,46 +34,49 @@ const UserForm = (props: UserFormProps) => {
     <>
       <div className="row">
         <div className="col-md-6">
-          <Form.Item label="First Name">
+          <Form.Item label={t("form.First Name")}>
             {getFieldDecorator("first_name", {
               initialValue: !_.isNull(values) ? values.first_name : "",
-              rules: [{ required: true, message: "Please enter first name" }],
-              
+              rules: [
+                { required: true, message: t("validation.required_first_name") }
+              ]
             })(<Input maxLength={30} placeholder="" />)}
           </Form.Item>
         </div>
         <div className="col-md-6">
-          <Form.Item label="Last Name">
+          <Form.Item label={t("form.Last Name")}>
             {getFieldDecorator("last_name", {
-              initialValue:  !_.isNull(values) ? values.last_name : "",
-              rules: [{ required: true, message: "Please enter last name" }]
-            })(<Input maxLength={30}  placeholder="" />)}
+              initialValue: !_.isNull(values) ? values.last_name : "",
+              rules: [
+                { required: true, message: t("validation.required_last_name") }
+              ]
+            })(<Input maxLength={30} placeholder="" />)}
           </Form.Item>
         </div>
       </div>
       <div className="row">
         <div className="col-md-6">
-          <Form.Item label="Email">
+          <Form.Item label={t("form.Email")}>
             {getFieldDecorator("email", {
-              initialValue:  !_.isNull(values) ? values.email : "",
+              initialValue: !_.isNull(values) ? values.email : "",
               rules: [
                 {
                   type: "email",
-                  message: "The input is not valid email"
+                  message: t("validation.invalid_email")
                 },
                 {
                   required: true,
-                  message: "Please input youremail"
+                  message: t("validation.required_email")
                 }
               ]
-            })(<Input  maxLength={100} placeholder="" />)}
+            })(<Input maxLength={100} placeholder="" />)}
           </Form.Item>
         </div>
         <div className="col-md-6">
-          <Form.Item label="DOB">
+          <Form.Item label={t("form.DOB")}>
             {getFieldDecorator("dob", {
-              initialValue:  !_.isNull(values) ? values.dob : null,
-              rules: [{ required: true, message: "Please select dob" }]
+              initialValue: !_.isNull(values) ? values.dob : null,
+              rules: [{ required: true, message: t("validation.required_dob") }]
             })(
               <DatePicker
                 showTime={false}
@@ -81,39 +90,39 @@ const UserForm = (props: UserFormProps) => {
       </div>
       <div className="row">
         <div className="col-md-6">
-          <Form.Item label="Gender">
+          <Form.Item label={t("form.Gender")}>
             {getFieldDecorator("gender", {
-              initialValue:  !_.isNull(values) ? values.gender : "M"
+              initialValue: !_.isNull(values) ? values.gender : "M"
             })(
               <Radio.Group>
-                <Radio value="M">Male</Radio>
-                <Radio value="F">Female</Radio>
+                <Radio value="M">{t("form.Male")}</Radio>
+                <Radio value="F">{t("form.Female")}</Radio>
               </Radio.Group>
             )}
           </Form.Item>
         </div>
         <div className="col-md-6">
-          <Form.Item label="Address">
+          <Form.Item label={t("form.Address")}>
             {getFieldDecorator("address", {
-              initialValue:  !_.isNull(values) ? values.address : "",
+              initialValue: !_.isNull(values) ? values.address : "",
               rules: [
                 {
                   required: true,
-                  message: "please enter address"
+                  message: t("validation.required_address")
                 }
               ]
-            })(<Input  maxLength={100} placeholder="" />)}
+            })(<Input maxLength={100} placeholder="" />)}
           </Form.Item>
         </div>
 
         <div className="col-md-12">
-          <Form.Item label="Bio">
+          <Form.Item label={t("form.Bio")}>
             {getFieldDecorator("bio", {
-              initialValue:  !_.isNull(values) ? values.bio : "",
+              initialValue: !_.isNull(values) ? values.bio : "",
               rules: [
                 {
                   required: true,
-                  message: "please enter bio"
+                  message: t("validation.required_bio")
                 }
               ]
             })(<Input.TextArea rows={2} placeholder="" />)}
@@ -123,7 +132,7 @@ const UserForm = (props: UserFormProps) => {
       <div style={{ display: "none" }}>
         {!_.isEmpty(editUserData)
           ? getFieldDecorator("id", {
-              initialValue:  !_.isNull(values) ? values.id : ""
+              initialValue: !_.isNull(values) ? values.id : ""
             })(<Input placeholder="" />)
           : ""}
       </div>
@@ -131,4 +140,4 @@ const UserForm = (props: UserFormProps) => {
   );
 };
 
-export default UserForm;
+export default withTranslation()(UserForm);
