@@ -24,7 +24,7 @@ npm/yarn install
 
 ### API Server
 
-To start API server, run below command
+To start API server, run below command in `api` directory
 
 ```
 npm start
@@ -38,6 +38,14 @@ Basic configuration `src/constants/appConfig.ts`
 1. `API_BASE_URL` : API endpoint. (Default : http://localhost:3000)
 2. `DATE_FORMATE` : Global date format that we can change as per required (Default : YYYY-MM-DD)
 3. `DEFAULT_LANG` : Default language code. We can change default language by changing this variable. (Default : en)
+
+### Feature
+1. REST API for users CRUD operation
+2. Login with Remember me.
+3. User CRUD operations (VIEW/ADD/EDIT/DELETE)
+4. Two different layout for user listing
+5. Multilingual with English and German (Default : English)
+6. Language switcher from top bar (After logged in)
 
 ## Available Scripts
 
