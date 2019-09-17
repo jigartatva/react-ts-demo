@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { DEFAULT_LANG } from "../constants/appConfig";
 
 import resources from "./resources";
 

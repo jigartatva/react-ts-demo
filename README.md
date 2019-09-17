@@ -32,6 +32,13 @@ npm start
 
 ***Keep the terminal open for API server. 
 
+### Configuration
+Basic configuration `src/constants/appConfig.ts`
+
+1. `API_BASE_URL` : API endpoint. (Default : http://localhost:3000)
+2. `DATE_FORMATE` : Global date format that we can change as per required (Default : YYYY-MM-DD)
+3. `DEFAULT_LANG` : Default language code. We can change default language by changing this variable. (Default : en)
+
 ## Available Scripts
 
 In the project directory, you can run:
