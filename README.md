@@ -39,6 +39,11 @@ Basic configuration `src/constants/appConfig.ts`
 2. `DATE_FORMATE` : Global date format that we can change as per required (Default : YYYY-MM-DD)
 3. `DEFAULT_LANG` : Default language code. We can change default language by changing this variable. (Default : en)
 
+### Sample Login Details
+
+Email : `s@s.com`
+Password : `123456`
+
 ### Feature
 1. REST API for users CRUD operation
 2. Login with Remember me.
