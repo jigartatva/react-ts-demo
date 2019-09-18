@@ -24,10 +24,10 @@
       "id": 3,
       "first_name": "Ann",
       "last_name": "Smith",
-      "dob": "",
+      "dob": "2019-09-10",
       "gender": "M",
-      "address": "",
-      "bio": "",
+      "address": "sss",
+      "bio": "sdsdfsdfsdf",
       "email": "anna@ana.com"
     }
   ]
